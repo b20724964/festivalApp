@@ -5,6 +5,10 @@ export default function DetailScreen ({ navigation }) {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <Text>Conser Bilgileri!</Text>
+      <Button
+              title="Haritayı gör"
+              onPress={() => navigation.navigate('Map')}
+            />
     </View>
   );
 }
