@@ -9,7 +9,7 @@ export default function App() {
     </View>
   );
 }
-
+//selam
 
 
 const styles = StyleSheet.create({
