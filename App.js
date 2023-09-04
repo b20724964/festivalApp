@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Text, View, Button } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, useRoute  } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
@@ -9,17 +9,6 @@ import ConcertScreen from './src/screens/Concert/ConcertScreen';
 import DetailScreen from './src/screens/Detail/DetailScreen';
 import MapScreen from './src/screens/Map/MapScreen';
 
-function SettingsScreen({navigation}) {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Settings!</Text>
-      <Button
-        title="anasayfaya git"
-        onPress={() => navigation.navigate('Home')}
-      />
-    </View>
-  );
-}
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
