@@ -8,6 +8,7 @@ import HomeScreen from './src/screens/Home/HomeScreen';
 import ConcertScreen from './src/screens/Concert/ConcertScreen';
 import DetailScreen from './src/screens/Detail/DetailScreen';
 import MapScreen from './src/screens/Map/MapScreen';
+import FiltreScreen from './src/screens/Filtre/FiltreScreen';
 
 
 const Tab = createBottomTabNavigator();
@@ -21,6 +22,7 @@ function MyTabs() {
       <Stack.Screen name="Concert" component={ConcertScreen} />
       <Stack.Screen name="Detail" component={DetailScreen} />
       <Stack.Screen name="Map" component={MapScreen} />
+      <Stack.Screen name="Filtre" component={FiltreScreen} />
     </Stack.Navigator>
   );
 }
