@@ -1,21 +1,45 @@
 import React, { useState, useEffect } from 'react';
 import { StatusBar, Button, FlatList, Image, Animated, Text, View, Dimensions, StyleSheet, TouchableOpacity, ImageBackground } from 'react-native';
 import axios from 'axios';
-const { width, height } = Dimensions.get('screen');
+import { useRoute } from '@react-navigation/native';
 
+const { width, height } = Dimensions.get('screen');
 const imageW = width * 0.80;
 const imageH = height * 0.5;
 
+
 export default function HomeScreen({ navigation }) {
   const [festivals, setfestivals] = useState("");
-  const onPress = () => setCount(prevCount => prevCount + 1);
+  const [filter,setFilter] = useState({performarName:"&artistName=",venueName:"&venueName=",toDate:"&eventDateTo=2023-12-31",genreSlug:"&genreSlug="})
+  const [isLoading, setLoading] = useState(true);
+  const route = useRoute()
+  
+  const performarName = route.params?.performarName
+  const venueName = route.params?.venueName
+  const toDate = route.params?.toDate
+  const genreSlug = route.params?.genreSlug
+  let uri = "https://www.jambase.com/jb-api/v1/events?apikey=5e84383a-f25d-41f6-9519-651561931798&geoCountryIso2=TR&perPage=40"
+  if(performarName)
+    uri=uri+"&artistName="+performarName
+  if(venueName)
+    uri=uri+"&venueName="+venueName
+  if(toDate)
+    uri=uri+"&eventDateTo="+toDate
+  if(genreSlug)
+    uri=uri+"&genreSlug="+genreSlug
 
   useEffect(() => {
-    axios.get("https://www.jambase.com/jb-api/v1/events?apikey=5e84383a-f25d-41f6-9519-651561931798&geoCountryIso2=TR&perPage=40")
-      .then(res => setfestivals(res.data))
-  }, [])
-  //if (festivals !== "")
-  //  console.log("selam", festivals["events"][1]["performer"])
+    axios.get(uri)
+      .then(res => {
+        setfestivals(res.data)
+        setLoading(false)
+      })
+  }, [uri])
+
+  if (isLoading) {
+    return <Text>Loading...</Text>;
+  }
+  
   return (
     <View style={{ flex: 1 }}>
       
