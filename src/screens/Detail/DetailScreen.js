@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useRoute } from '@react-navigation/native';
-import { Text, View, Button, Image, StyleSheet } from 'react-native';
+import { Text, View, Button, Image, ActivityIndicator, StyleSheet } from 'react-native';
 import axios from 'axios';
 import { Icon } from '@rneui/themed';
 
@@ -22,7 +22,11 @@ export default function DetailScreen({ navigation }) {
   }, [id])
   
   if (isLoading) {
-    return <Text>Loading...</Text>;
+    return (
+      <View style={[styles.container, styles.horizontal]}>
+        <ActivityIndicator size="large" color="#841584" />
+      </View>
+    );
   }
 
   return (
@@ -91,5 +95,15 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     letterSpacing: 0.25,
     color: 'white',
+  },
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    backgroundColor: "#313866"
+  },
+  horizontal: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    padding: 10,
   },
 });
