@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useRoute } from '@react-navigation/native';
-import { Text, View, Button, Image, ActivityIndicator, StyleSheet } from 'react-native';
+import { Text, View, Button, Image, ActivityIndicator, StyleSheet, Linking } from 'react-native';
 import axios from 'axios';
 import { Icon } from '@rneui/themed';
 
@@ -71,7 +71,7 @@ export default function DetailScreen({ navigation }) {
         <Button 
           title="Bilet Al"
           color= "#EC53B0"
-          onPress={() => navigation.navigate('Map', {id:id})}
+          onPress={() =>  { Linking.openURL(concert["offers"][0]["url"])}}
           
         />
       </View>
